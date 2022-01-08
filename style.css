@@ -1,0 +1,182 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+html {
+    background-color: #20b2aa;
+}
+
+.section {
+    padding: 30px 0px;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 1200px;
+    margin: auto;
+}
+
+.title {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.title h2 {
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #ffcc33;
+}
+
+.aside {
+    width: 30%;
+    box-sizing: border-box;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    padding: 20px 15px;
+}
+
+.area {
+    padding: 15px 0px;
+    font-size: 0;
+}
+
+.area label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    margin-right: 3px;
+}
+
+.area span,
+.key-word label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.key-word #search {
+    padding: 5px;
+    border: 2px solid #ffcc33;
+}
+
+.btn-box {
+    font-size: 0;
+}
+
+.btn-box button {
+    padding: 10px;
+    background-color: #ddd;
+    transition: .3s;
+}
+
+.btn-box .cancel-all {
+    margin-left: 5px;
+}
+
+.btn-box button:hover {
+    background-color: #ffcc33;
+}
+
+.place-panel {
+    width: 65%;
+    box-sizing: border-box;
+    margin-left: auto;
+    border: 1px solid #d6d6d6;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.place-panel .result {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.place-panel .sort-count {
+    margin-left: auto;
+    font-size: 0;
+}
+
+.sort-count span {
+    margin-left: 25px;
+    font-size: 16px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.table thead {
+    background-color: #ffcc33;
+}
+
+.table th {
+    padding: 15px 15px 15px 0px;
+}
+
+.tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.tbody td {
+    padding: 15px 15px 15px 0px;
+    text-align: center;
+}
+
+.tbody td a:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    background-color: white;
+    padding: 15px 0px;
+    text-align: center;
+}
+
+.pagination .button {
+    transition: background-color .3s;
+    color: #20b2aa;
+    font-size: 18px;
+}
+
+.pagination .button+.button {
+    margin-left: 10px;
+}
+
+.pagination .button-number{
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+}
+
+.pagination .button-prev,
+.pagination .button-next {
+    line-height: 50px;
+    padding: 0px 18px;
+    border-radius: 50px;
+}
+
+.pagination .button:hover {
+    background-color: #20b2aa;
+    color: white;
+}
+
+.pagination .active{
+    background-color: #20b2aa;
+    color: white;
+}

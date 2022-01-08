@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>YouBike 公共自行車</title>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="title">
+                <h2>站點列表</h2>
+            </div>
+            <aside class="aside">
+                <form class="filter">
+                    <div class="key-word">
+                        <label for="search">關鍵字搜索</label>
+                        <input id="search" type="text" placeholder="請輸入關鍵字">
+                    </div>
+                    <div class="area">
+                        <span>區域</span>
+                        <label>
+                            <input type="checkbox">大安區
+                        </label>
+                        <label>
+                            <input type="checkbox">松山區
+                        </label>
+                        <label>
+                            <input type="checkbox">大同區
+                        </label>
+                        <label>
+                            <input type="checkbox">信義區
+                        </label>
+                        <label>
+                            <input type="checkbox">中山區
+                        </label>
+                        <label>
+                            <input type="checkbox">內湖區
+                        </label>
+                        <label>
+                            <input type="checkbox">南港區
+                        </label>
+                        <label>
+                            <input type="checkbox">中正區
+                        </label>
+                        <label>
+                            <input type="checkbox">文山區
+                        </label>
+                        <label>
+                            <input type="checkbox">士林區
+                        </label>
+                        <label>
+                            <input type="checkbox">萬華區
+                        </label>
+                        <label>
+                            <input type="checkbox">北投區
+                        </label>
+                        <label>
+                            <input type="checkbox">臺大專區
+                        </label>
+                    </div>
+
+                    <div class="btn-box">
+                        <button class="choose-all" type="button">選擇全部</button>
+                        <button class="cancel-all" type="button">取消全部</button>
+                    </div>
+                </form>
+            </aside>
+
+            <div class="place-panel">
+                <div class="result">
+                    <span>查詢結果 :</span>
+                    <div class="sort-count"></div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>區域</th>
+                            <th>租賃站點查詢</th>
+                            <th>可借車輛</th>
+                            <th>可停空位</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="pagination">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
