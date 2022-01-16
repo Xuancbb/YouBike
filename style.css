@@ -4,7 +4,7 @@ html {
     background-color: #20b2aa;
 }
 
-.section {
+.you-bike {
     padding: 30px 0px;
 }
 
@@ -23,16 +23,17 @@ button {
     margin: auto;
 }
 
-.title {
+.station {
     width: 100%;
     margin-bottom: 15px;
 }
 
-.title h2 {
+.station span {
     display: inline-block;
     padding-bottom: 5px;
     border-bottom: 3px solid #ffcc33;
 }
+
 
 .aside {
     width: 30%;
