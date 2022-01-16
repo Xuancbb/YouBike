@@ -1,11 +1,5 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
 
-a {
-    text-decoration: none;
-    color: black;
-}
-
-
 html {
     background-color: #20b2aa;
 }
@@ -138,9 +132,6 @@ button {
     text-align: center;
 }
 
-.tbody td a:hover {
-    text-decoration: underline;
-}
 
 .pagination {
     background-color: white;
@@ -171,11 +162,7 @@ button {
     border-radius: 50px;
 }
 
-.pagination .button:hover {
-    background-color: #20b2aa;
-    color: white;
-}
-
+.pagination .button:hover ,
 .pagination .active{
     background-color: #20b2aa;
     color: white;

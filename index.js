@@ -36,7 +36,7 @@ fetch("https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediat
         userSearch(result); // 搜尋區域
 
     })
-    .catch(function (error) {
+    .catch(function () {
         console.log('error');
     })
 
@@ -50,12 +50,14 @@ function initialArea(areaData) {
 
 
     if (search.value === '') {
+
         //渲然html
-        renderPanel(areaData)
+        renderPanel(areaData);
     }
 
-    checkChange(areaData, search.value);
-
+    if (search.value !== '') {
+        checkChange(areaData, search.value);
+    }
 
 }
 
@@ -79,6 +81,57 @@ function renderPanel(areaData) {
 
     pageData();
 }
+
+
+// 選擇區域
+function checkChange(areaData, areaName) {
+
+    let excludeArr = exclude();
+
+    searchFilter(areaName, areaNameNewData(excludeArr, areaData));
+
+}
+
+
+// 挑出要刪除的區域名稱
+function exclude() {
+
+    let excludeArr = [];
+
+    areaChecks.forEach((checkBox) => {
+        if (checkBox.checked === false) {
+            excludeArr.push(checkBox.nextSibling.textContent.trim());
+        }
+    })
+
+    return excludeArr;
+
+}
+
+//要刪除的區域名稱與資料篩選
+function areaNameNewData(excludeArr, areaData) {
+    excludeArr.forEach((excludeAreaName) => {
+        areaData = areaData.filter((item) => {
+            return item.sarea !== excludeAreaName;
+        })
+
+    })
+
+    return areaData;
+}
+
+
+// 搜尋和選擇區域的資料變動
+function searchFilter(areaName, areaData) {
+
+    areaData = areaData.filter((item) => {
+        return item.sarea.includes(areaName) || item.sna.slice(item.sna.indexOf('_') + 1).includes(areaName);
+    })
+
+    renderPanel(areaData);
+
+}
+
 
 //地區全部顯示或取消顯示
 function areaBtnFilter(areaData) {
@@ -121,95 +174,50 @@ function areasCheck(areaData) {
     })
 }
 
-// 選擇區域
-function checkChange(areaData, areaName) {
-
-    let excludeArr = exclude();
-
-    searchFilter(areaName, areaNameNewData(excludeArr, areaData));
-
-}
-
-// 挑出要刪除的區域名稱
-function exclude() {
-
-    let excludeArr = [];
-
-    areaChecks.forEach((checkBox) => {
-        if (checkBox.checked === false) {
-            excludeArr.push(checkBox.nextSibling.textContent.trim());
-        }
-    })
-
-    return excludeArr;
-
-
-}
-
-
-//要刪除的區域名稱與資料篩選
-function areaNameNewData(excludeArr, areaData) {
-    excludeArr.forEach((excludeAreaName) => {
-        areaData = areaData.filter((item) => {
-            return item.sarea !== excludeAreaName;
-        })
-
-    })
-
-    return areaData;
-}
-
 
 //搜尋區域
 function userSearch(areaData) {
 
-    search.addEventListener('keyup', function (e) {
-        searchFilter(e.target.value, areaNameNewData(exclude(), areaData));
-    })
-
     search.addEventListener('keydown', function (e) {
-
         if (e.code === 'NumpadEnter' || e.code === 'Enter') {
             e.preventDefault();
         }
 
     })
-}
 
-// 搜尋和選擇區域的資料變動
-function searchFilter(areaName, areaData) {
-
-    areaData = areaData.filter((item) => {
-        return item.sarea.includes(areaName) || item.sna.slice(item.sna.indexOf('_') + 1).includes(areaName);
+    search.addEventListener('keyup', function (e) {
+        searchFilter(e.target.value, areaNameNewData(exclude(), areaData));
     })
 
-    renderPanel(areaData);
-
 }
 
 
-
+//頁面按鈕資料
 function pageData() {
     let perPageData = 10;
     dataTotal = document.querySelectorAll('.table tbody tr');
 
 
     pageTotal = dataTotal.length > 0 ? Math.ceil(dataTotal.length / perPageData) : 0;
-    initialValueBtn = pageTotal === 0 ? 0 : 1;
+
+    initialValueBtn = (pageTotal === 0 ? 0 : 1);
+
 
     pagination.removeEventListener('click', changePageBtn);
     pagination.removeEventListener('click', singlePageBtn);
 
     if (pageTotal >= 8) {
         pagination.addEventListener('click', changePageBtn);
-        createPagination();
+        createPagination(); // 產生頁面按鈕
     }
+
 
     if (pageTotal === 0) {
         pagination.innerHTML = '';
         groupData = [];
         sortCount();
     }
+
 
     if (pageTotal < 8 && pageTotal !== 0) {
         pagination.addEventListener('click', singlePageBtn);
@@ -228,12 +236,12 @@ function pageData() {
         pagination.innerHTML = changePage.prev + currentBtnHtml + changePage.next;
     }
 
-    sliceDataTotal(dataTotal);
+    sliceDataTotal(dataTotal); // 每顆按鈕切割10筆資料
 
 
 }
 
-
+// 多頁按鈕的處理
 function changePageBtn(e) {
 
     if (e.target.classList.contains('button-prev')) {
@@ -261,6 +269,7 @@ function changePageBtn(e) {
 
 }
 
+// 單頁按鈕的處理
 function singlePageBtn(e) {
 
     if (e.target.classList.contains('button-prev')) {
@@ -293,7 +302,7 @@ function singlePageBtn(e) {
 
 }
 
-
+// 產生頁面按鈕
 function createPagination() {
     let active = '';
 
@@ -330,7 +339,7 @@ function createPagination() {
 
 }
 
-
+//首顆按鈕套顏色
 function addActive() {
 
     let NewBtnTags = document.querySelectorAll('.pagination .button-number');
@@ -346,20 +355,22 @@ function addActive() {
 
 }
 
-
+// 每顆按鈕切割10筆資料
 function sliceDataTotal(dataTotal) {
 
     groupData = [];
 
     for (let i = 0; i < dataTotal.length; i += 10) {
-        groupData.push(Array.from(dataTotal).slice(i, i + 10))
+        groupData.push(Array.from(dataTotal).slice(i, i + 10));
     }
 
+
+    // 顯示當前按鈕的資料
     showCurrentPageData();
 
 }
 
-
+// 顯示當前按鈕的資料
 function showCurrentPageData() {
     let pageBtn = Array.from(document.querySelectorAll('.pagination .button-number'));
     html = '';
@@ -387,6 +398,7 @@ function showCurrentPageData() {
 
 }
 
+// 計算頁面筆數
 function sortCount() {
     let count = document.querySelector('.sort-count');
     let countHtml = '';
